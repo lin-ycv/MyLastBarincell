@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +15,8 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh; /* full viewport height */
+      height: 100vh;
+      /* full viewport height */
     }
 
     .title {
@@ -27,62 +29,68 @@
       height: 40px;
       font-size: 50px;
       text-align: center;
-      border: none; /* remove the border */
-      border-bottom: 3px solid black; /* add a border on the bottom */
+      border: none;
+      /* remove the border */
+      border-bottom: 3px solid black;
+      /* add a border on the bottom */
       outline: none;
-      background: transparent; /* make the background transparent */
+      background: transparent;
+      /* make the background transparent */
     }
   </style>
 </head>
-<body>    
-  <div class="container" id="contain"> 
+
+<body>
+  <div class="container" id="contain">
     <div class="title" id="prompt">Enter Password:</div>
     <br>
     <br>
     <form id="passwordForm">
-    <input type="text" id="input">
-</form>
-</div>
+      <input type="text" id="input">
+    </form>
+  </div>
 </body>
 <script>
-    let i = 0;
-    let pass = ["Password", "Incorrect", "Again", "Again Later"];
-    let prompt = document.getElementById("prompt");
-    let prompts=["Password Is Incorrect.", "Try Again.", "Please Try Again Later.", "bruh."];
-    document.getElementById("passwordForm").addEventListener("submit", function(event) {
-        event.preventDefault(); // Prevent the default form submission behavior
-        submitForm();
-    });
+  let i = 0;
+  let pass = ["Password", "Incorrect", "Again", "Again Later"];
+  let prompt = document.getElementById("prompt");
+  let prompts = ["Password Is Incorrect.", "Try Again.", "Please Try Again Later.", "bruh."];
+  document.getElementById("passwordForm").addEventListener("submit", function (event) {
+    event.preventDefault(); // Prevent the default form submission behavior
+    submitForm();
+  });
 
-    function submitForm() {
-        let input = document.getElementById("input");        
-        if (i<3 && input.value == pass[i]) {
-            input.value = "";
-            prompt.innerHTML = prompts[i];
-            prompt.style.color = "red";
-            i++;
-        }
-        else if(i==3 && input.value == pass[i]) {
-            input.value = "";
-            prompt.innerHTML = prompts[i];
-            prompt.style.color = "white";
-            input.style.border = "none";
-            input.style.display = "none";
-            document.getElementById("contain").style.backgroundImage = "url('https://i.kym-cdn.com/entries/icons/original/000/031/003/cover3.jpg')";
-            document.getElementById("contain").style.backgroundSize = "cover";
-            document.getElementById("contain").style.backgroundPosition = "center"; /* Center the background image */
-            document.addEventListener("keydown", function(event) {
-                if (event.key === "Enter") {
-                    let scale = i*0.2+1;
-                    document.body.style.transform = "scale("+scale+")";
-                    i++;
-                    if(i>9){
-                        window.location.href = "https://www.youtube.com/watch?v=xP4zLc7tjw4";
-                    }
-                }
-            }  );
-            i++;
-        }
+  function submitForm() {
+    let input = document.getElementById("input");
+    if (i < 3 && input.value == pass[i]) {
+      input.value = "";
+      prompt.innerHTML = prompts[i];
+      prompt.style.color = "red";
+      i++;
     }
+    else if (i == 3 && input.value == pass[i]) {
+      input.value = "";
+      prompt.innerHTML = prompts[i];
+      prompt.style.color = "white";
+      input.style.border = "none";
+      input.style.display = "none";
+      document.getElementById("contain").style.backgroundImage = "url('https://i.kym-cdn.com/entries/icons/original/000/031/003/cover3.jpg')";
+      document.getElementById("contain").style.backgroundSize = "cover";
+      document.getElementById("contain").style.backgroundPosition = "center"; /* Center the background image */
+      document.addEventListener("keydown", advance);
+      document.addEventListener("click", advance);
+      i++;
+    }
+  }
+
+  function advance(event) {
+    let scale = i * 0.2 + 1;
+    document.body.style.transform = "scale(" + scale + ")";
+    i++;
+    if (i > 9) {
+      window.location.href = "https://www.youtube.com/watch?v=xP4zLc7tjw4";
+    }
+  }
 </script>
+
 </html>
